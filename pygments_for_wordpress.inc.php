@@ -237,6 +237,13 @@ class Pygmentizer
         // Extract the unformatted content out of the array:
         $content = $this->unformatted_shortcode_blocks[$content];
 
+        //Prevent broken "< ?php" (caused by Wordpress)
+        $preventBrokenTags = array("html+php", "css+php", "js+php", "xml+php", "php", "php3", "php4", "php5",);
+
+        if (in_array($language, $preventBrokenTags)) {
+            $content = preg_replace("/\<\s\?php/", "<?php", $content);
+        }
+
         return pygmentize($content, $language, $style, $tabwidth, $extra_opts);
     }
 }
