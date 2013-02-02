@@ -220,11 +220,21 @@ class Pygmentizer
         // Extract the unformatted content out of the array:
         $content = $this->unformatted_shortcode_blocks[$content];
 
+        $content = trim($content);
+        define("PHP_OPEN_TAG", "<?php");
+
         //Prevent broken "< ?php" (caused by Wordpress)
-        $preventBrokenTags = array("html+php", "css+php", "js+php", "xml+php", "php", "php3", "php4", "php5",);
+        $purePHP = array("php", "php3", "php4", "php5");
+        $mixedPHP = array("html+php", "css+php", "js+php", "xml+php");
+        $preventBrokenTags = array_merge($mixedPHP, $purePHP);
 
         if (in_array($language, $preventBrokenTags)) {
-            $content = preg_replace("/\<\s\?php/", "<?php", $content);
+            $content = preg_replace("/\<\s\?php/", PHP_OPEN_TAG, $content);
+        }
+
+        //HELPER if only php code and not open tag specified, we add one
+        if (in_array($this->language, $purePHP) && substr($content, 0, 5) !== PHP_OPEN_TAG) {
+            $content = PHP_OPEN_TAG . "\n" . $content;
         }
 
         return pygmentize($content, $language, $style, $tabwidth, $extra_opts);
