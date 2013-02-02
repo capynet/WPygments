@@ -11,13 +11,15 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
     // appended by pygmentize if using a line numbers table.  If we
     // didn't do this, all CSS definitions would use the default value
     // "highlight", making it impossible to have diffn't styles on the same page.
-    $highlight_class = basename($temp_name);
+    $highlight_class = "pygments-highlight." . basename($temp_name);
 
     // Workaround bugfixes for WordPress when using dark-background styles (monokai).
 
     // We need this because the default WP style has a global <pre> font color that is almost
     // invisible against a dark background.
-    if ($style == "monokai" or $style == "fruity" or $style == "vim") {
+    $is_darken_style = $style == "monokai" || $style == "fruity" || $style == "vim";
+
+    if ($is_darken_style) {
         $linenos_extra_css = "color: #F8F8F2;";
     }
 
@@ -41,16 +43,21 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
     exec($command, $output, $retval);
     unlink($temp_name);
 
+
     $output_string = join("\n", $output);
 
-    $original_output_string = join("\n", $output);
     // Manually wrap tabs in a "tabspan" class, so the tab width can be set to 4
     $output_string = str_replace("\t", "<span class='tabspan'>\t</span>", $output_string);
+
+    // Manually wrap tabs in a "tabspan" class, so the tab width can be set to 4
+    $output_string = str_replace('class="pygments-highlight.', 'class="pygments-highlight ' . $style . ' ', $output_string);
 
     // We use the Pygments "full" option, so that we don't need to manage separate
     // CSS files (and links) for  every possible value of "style".
     // However, "full" exports a full HTML doctype, <title>, <body>, etc. which we don't
     // want when embedding into another PHP document.  So we manually remove that stuff here.
+
+    //@todo send CSS to WP like a plugin does.
 
     // Replace everything up to (and including) the first <style> tag:
     if (strpos($output_string, '<style type="text/css">') != FALSE) {
@@ -61,51 +68,10 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
     $output_string = <<<EOD
 <style type="text/css">
 
-
 /* *************************************************** */
 /* WordPress default theme "twenty-ten" compatibility: */
 /* FIXME: Is there a way to limit these changes to {$highlight_class}  */
 /*        without editing the WordPress theme directly? */
-/* *************************************************** */
-
-#content pre {
-  /* The background: transparent is needed to work with WordPress:*/
-  background: transparent;
-  /* Default WordPress style has a big fat <pre> margin-bottom: */
-  margin-bottom: 0px;
-
-  /*color: #333333;*/
-  font-size: .9em; 
-  line-height: 1.25em;
-}
-
-#content table {
-}
-
-#content table {
-	border: 1px solid #e7e7e7;
-    margin: 0 0 0 0;
-	text-align: left;
-	width: 100%;
-}
-#content tr th,
-#content thead th {
-	color: #888;
-	font-size: 12px;
-	font-weight: bold;
-	line-height: 18px;
-	padding: 0px;
-}
-#content tr td {
-	border: 0px;
-	padding: 0px;
-	margin: 0px;
-    margin-bottom: 0px;
-    padding-bottom: 0px;
-
-}
-
-/* *************************************************** */
 /* *************************************************** */
 
 /* Standard fixes to the default output: */
@@ -119,10 +85,9 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
 /* When using line numbers, use 100% table width and no cellpadding: */
 .{$highlight_class}table {
   width: 100%;
-  border-spacing: 0px;
+  border-spacing: 0;
   border-collapse: collapse;
 }
-
 
 /*
 #content table {
@@ -134,8 +99,8 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
 */
 
 .{$highlight_class}table td, .{$highlight_class}table th {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 /* Add a little buffer so the monotype font doesn't bump directly against the edge: */
@@ -147,7 +112,7 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
 /* This is more consistent with <p> tags... I didn't like it for my use: */
 /*
 div .{$highlight_class} {
-    margin-bottom: 24px; 
+    margin-bottom: 24px;
 }
 */
 

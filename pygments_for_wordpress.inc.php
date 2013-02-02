@@ -104,7 +104,7 @@ class Pygmentizer
         return $content;
     }
 
-    function my_shortcode_handler1($atts, $content = null, $code = "")
+    function my_shortcode_handler1($atts, $content = null)
     {
 
         // Store the unformatted content for later:
@@ -126,54 +126,36 @@ class Pygmentizer
 
 
     // See http://codex.wordpress.org/Shortcode_API
-    function my_shortcode_handler2($atts, $content = null, $code = "")
+    function my_shortcode_handler2($atts, $content = null)
     {
 
-        extract(shortcode_atts(array(
+        $attrs = (object)shortcode_atts(array(
             'language' => null,
             'l' => null,
-
             'style' => null,
             's' => null,
-
             'tabwidth' => null,
             // These are passed in using $extra_opts:
             'linenos' => null,
             'linenostart' => null,
             'hl_lines' => null,
             'nowrap' => null,
-        ), $atts));
+        ), $atts);
 
         /* Some of the shortcode options are passed directly to pgymentize().  But
            others are converted to generic shell command-line options: */
 
         $extra_opts_array = array(); // Used to build e.g. "linenos=table,hl_lines='3 7'"
 
-        // The short forms l and s overwrite the long forms:
-        if ($l != null) {
-            $language = $l;
-        }
-        if ($s != null) {
-            $style = $s;
-        }
+        //Assign sortcode defined user
+        $language = $attrs->language ? : $attrs->l ? : $this->language;
+        $style = $attrs->style ? : $attrs->s ? : $this->style;
+        $tabwidth = $attrs->tabwidth ? : $this->tabwidth;
+        $linenos = $attrs->linenos ? : $this->linenos;
+        $nowrap = $attrs->nowrap ? : $this->nowrap;
 
-
-        // Use defaults saved from last time:
-        if ($language === null) {
-            $language = $this->language;
-        }
-        if ($style === null) {
-            $style = $this->style;
-        }
-        if ($tabwidth === null) {
-            $tabwidth = $this->tabwidth;
-        }
-        if ($linenos === null) {
-            $linenos = $this->linenos;
-        }
-        if ($nowrap === null) {
-            $nowrap = $this->nowrap;
-        }
+        //Preventing errors
+        //---------------------------------
 
         /* Make sure there are no wonky shell characters in these args.  At this
            writing (2011-05-01) only alnum and +,- are used in these two options */
@@ -199,13 +181,13 @@ class Pygmentizer
             // pass, no line numbers
         }
 
-        if (is_numeric($linenostart)) {
-            $extra_opts_array[] = "linenostart=$linenostart";
+        if (is_numeric($attrs->linenostart)) {
+            $extra_opts_array[] = "linenostart=$attrs->linenostart";
         }
 
-        if ($hl_lines != NULL) {
+        if ($attrs->hl_lines != NULL) {
             /* We split apart the passed-in arg to make sure each one is numeric: */
-            $hl_lines_array = preg_split('/ +/', $hl_lines);
+            $hl_lines_array = preg_split('/ +/', $attrs->hl_lines);
             $hl_lines_array_safe = array();
 
             foreach ($hl_lines_array as $line_no) {
@@ -213,6 +195,7 @@ class Pygmentizer
                     $hl_lines_array_safe[] = $line_no;
                 }
             }
+
             $option = "hl_lines='" . join(" ", $hl_lines_array_safe) . "'";
             $extra_opts_array[] = $option;
         }
