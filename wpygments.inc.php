@@ -23,6 +23,14 @@ class Pygmentizer
     private $shortcodes = array(
         "pygmentize",
         "pyg",
+        "php"
+    );
+
+    private $shortcuts = array(
+        "javascript",
+        "php",
+        "html",
+        "xml"
     );
 
     function __construct()
@@ -50,6 +58,12 @@ class Pygmentizer
             add_shortcode($shortcode, array(&$this, 'parseShortcode'));
         }
 
+        //Traduct shortcuts to [pyg lang="LANGNAME"]...[/pyg]
+        foreach ($this->shortcuts as $shortcut) {
+            $pattern = '\\[(' . "$shortcut" . ')\\](' . '[\S\s]*?' . ')\\[\/' . "$shortcut" . '\\]';
+            $content = preg_replace("/$pattern/s", '[pyg lang="$1"]$2[/pyg]', $content);
+        }
+
         $content = do_shortcode($content);
 
         // Put the original shortcodes back
@@ -58,14 +72,16 @@ class Pygmentizer
         return $content;
     }
 
+
     /**
      * Extract and merge attrs defined in shortcode with defaults.
      *
-     * @param $atts array shortcodes params
+     * @param $attributes array shortcodes params
      * @return Pygmentizer
      */
-    private function getAttrs($atts)
+    private function getAttrs($attributes)
     {
+
         $attrs = (object)shortcode_atts(array(
             'lang' => "text",
             'style' => "default",
@@ -75,7 +91,7 @@ class Pygmentizer
             'linenostart' => null,
             'hl_lines' => null,
             'nowrap' => false,
-        ), $atts);
+        ), $attributes);
 
         /* Make sure there are no wonky shell characters in these args.  At this
         writing (2011-05-01) only alnum and +,- are used in these two options */
@@ -107,8 +123,6 @@ class Pygmentizer
             $extra_opts_array[] = "linenos=inline";
         } else if ($this->attrs->linenos) {
             $extra_opts_array[] = "linenos=table";
-        } else {
-            // pass, no line numbers
         }
 
         if (is_numeric($this->attrs->linenostart)) {
