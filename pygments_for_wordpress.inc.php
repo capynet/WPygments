@@ -232,12 +232,23 @@ class Pygmentizer
             $content = preg_replace("/\<\s\?php/", PHP_OPEN_TAG, $content);
         }
 
+        $expose_php_open_tag = false;
+
+        $hidden_php_tab = false;
         //HELPER if only php code and not open tag specified, we add one
         if (in_array($this->language, $purePHP) && substr($content, 0, 5) !== PHP_OPEN_TAG) {
             $content = PHP_OPEN_TAG . "\n" . $content;
+            $hidden_php_tab = true;
         }
 
-        return pygmentize($content, $language, $style, $tabwidth, $extra_opts);
+        $return = pygmentize($content, $language, $style, $tabwidth, $extra_opts);
+
+        if ($hidden_php_tab && !$expose_php_open_tag) {
+            $return = str_replace('<span class="cp">&lt;?php</span>', "", $return);
+
+        }
+        return $return;
+
     }
 }
 
