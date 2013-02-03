@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Pygments
+Plugin Name: WPygments
 Plugin URI: https://github.com/capy/WPygments
 Description: Server side syntax highlighter based on Pygments highlighter software
 Version: 1.0 beta 1

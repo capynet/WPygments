@@ -1,4 +1,4 @@
-pygments-for-wordpress
+WPygments - Wordpress syntax highlighter based on Pygments
 ======================
 
-A enhanced fork of original http://derek.simkowiak.net/pygments-for-wordpress/
+Server side syntax highlighter based on Pygments highlighter software
