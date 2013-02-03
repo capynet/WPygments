@@ -50,7 +50,7 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4, $extra_
     $output_string = str_replace("\t", "<span class='tabspan'>\t</span>", $output_string);
 
     // Manually wrap tabs in a "tabspan" class, so the tab width can be set to 4
-    $output_string = str_replace('class="pygments-highlight.', 'class="pygments-highlight ' . $style . ' ', $output_string);
+    $output_string = str_replace('class="pygments-highlight.', 'class="pygments-highlight ' . $style . ' ' . $language . ' ' , $output_string);
 
     // We use the Pygments "full" option, so that we don't need to manage separate
     // CSS files (and links) for  every possible value of "style".
