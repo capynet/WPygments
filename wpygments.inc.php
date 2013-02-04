@@ -15,7 +15,7 @@ class Pygmentizer
 {
 
     private $hidden_php_tab = false;
-    private $expose_php_open_tag = false;
+    private $expose_php_open_tag = true;
     private $attrs;
     private $extra_opts_array = array();
     private $content;
@@ -30,7 +30,10 @@ class Pygmentizer
         "javascript",
         "php",
         "html",
-        "xml"
+        "xml",
+        "mysql",
+        "sql",
+        "css"
     );
 
     function __construct()
@@ -175,6 +178,19 @@ class Pygmentizer
             $content = preg_replace("/\<\s\?php/", PHP_OPEN_TAG, $content);
         }
 
+        define("XML_OPEN_TAG", "<?xml");
+        //XML
+        if (in_array($this->attrs->lang, array("xml"))) {
+            $content = preg_replace("/\<\s\?xml/", XML_OPEN_TAG, $content);
+        }
+
+        define("HTML_DOCTYPE_TAG", "<!DOCTYPE");
+
+        //HTML
+        if (in_array($this->attrs->lang, array("html"))) {
+            $content = preg_replace("/\<\s\!DOCTYPE/", HTML_DOCTYPE_TAG, $content);
+        }
+
         //HELPER if only php code and not open tag specified, we add one
         if (in_array($this->attrs->lang, $purePHP) && substr($content, 0, 5) !== PHP_OPEN_TAG) {
             $content = PHP_OPEN_TAG . "\n" . $content;
@@ -211,6 +227,14 @@ class Pygmentizer
         //Prepare all stuff
         $this->getAttrs($atts)->getCMDExtraArgs()->prepareContent($content);
 
+        $cacheKey = md5($this->content . $this->attrs->lang . $this->attrs->style . $this->attrs->tabwidth . $this->extra_opts_array);
+
+        $cache = wp_cache_get($cacheKey, "wpygments");
+
+        if ($cache != false) {
+            return $cache;
+        }
+
         //Call pygmentize wrapper
         $this->result = pygmentize(
             $this->content,
@@ -222,8 +246,10 @@ class Pygmentizer
 
         $this->postProcessContent();
 
+        wp_cache_set($cacheKey, $this->result, "wpygments");
         return $this->result;
     }
+
 }
 
 add_action('plugins_loaded', create_function('', 'global $pygmentizer; $pygmentizer = new Pygmentizer();'));
