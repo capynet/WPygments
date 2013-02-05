@@ -208,7 +208,7 @@ class Pygmentizer
     private function postProcessContent()
     {
         if ($this->hidden_php_tab && !$this->expose_php_open_tag) {
-            $this->result = str_replace('<span class="cp">&lt;?php</span>', "", $this->result);
+            $this->result["code"] = str_replace('<span class="cp">&lt;?php</span>', "", $this->result);
         }
     }
 
@@ -231,9 +231,7 @@ class Pygmentizer
 
         $cache = wp_cache_get($cacheKey, "wpygments");
 
-        if ($cache != false) {
-            return $cache;
-        }
+        if (false && $cache != false) return $cache;
 
         //Call pygmentize wrapper
         $this->result = pygmentize(
@@ -246,8 +244,9 @@ class Pygmentizer
 
         $this->postProcessContent();
 
-        wp_cache_set($cacheKey, $this->result, "wpygments");
-        return $this->result;
+        wp_cache_set($cacheKey, $this->result["code"], "wpygments");
+
+        return $this->result["code"];
     }
 
 }

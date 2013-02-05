@@ -3,6 +3,45 @@ WPygments - Wordpress syntax highlighter based on Pygments
 
 Server side syntax highlighter based on Pygments highlighter software
 
+## Supported color styles:
+
+'monokai'
+
+'manni'
+
+'rrt'
+
+'perldoc'
+
+'borland'
+
+'colorful'
+
+'default'
+
+'murphy'
+
+'vs'
+
+'trac'
+
+'tango'
+
+'fruity'
+
+'autumn'
+
+'bw'
+
+'emacs'
+
+'vim'
+
+'pastie'
+
+'friendly'
+
+'native'
 
 Lexers:
 ~~~~~~~
