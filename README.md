@@ -122,8 +122,9 @@ These are supported color styles:
 
 Pygments not only highlights languages. also highlights filetypes like .conf **Nginx** configuration file, **Apache** (filenames .htaccess, apache.conf, apache2.conf), etc.
 
-Here is a list of more used:
+NOTE: to use see "Usage" section
 
+#####important sdsd;
 #####General
 * `apacheconf`: (.htaccess, apache.conf, apache2.conf)
 * `bash`, `sh`, `ksh`:
@@ -143,24 +144,21 @@ Here is a list of more used:
     Bash Session (*.sh-session)
 
 #####Javascript
-* `javascript`:
-    (*.js)
-* `coffee-script`:
-    CoffeeScript (*.coffee)
-* `json`:
-    JSON (*.json)
+* `javascript`: Pure Javascript
+* `coffeescript`: Pure CoffeeScript
+* `json`: Pure JSON
 
 #####PHP
-* `css+php`: CSS+PHP 
-* `html+php`: HTML+PHP (*.phtml)
-* `js+php`
-* `php`: (*.php, *.php3, *.php4, *.php5)
-* `xml+php`
+* `cssphp`: PHP embedded in CSS
+* `htmlphp`: PHP embedded in HTML
+* `jsphp`: PHP embedded in JS
+* `php`: Pure PHP
+* `xmlphp`: PHP embedded in XML
 
 #####Ruby
 * `ruby`, `duby`: Ruby (*.rb, *.rbw, *.rake, *.gemspec, *.rbx, *.duby)
-* `css+erb`, `css+ruby`: CSS+Ruby 
-* `xml+erb`, `xml+ruby`: XML+Ruby 
+* `csserb`, `cssruby`: Ruby embedded in CSS
+* `xmlerb`, `xmlruby`: Ruby embedded in XML
 
 #####CSS and CSS compilers
 * `css`:
@@ -186,21 +184,14 @@ Here is a list of more used:
 * `mysql`:
     MySQL 
 
-#####Python & Django
-* `python`:
-    Python (*.py, *.pyw, *.sc, SConstruct, SConscript, *.tac)
-* `python3`:
-    Python 3 
-* `xml+django`, `xml+jinja`:
-    XML+Django/Jinja 
-* `css+django`, `css+jinja`:
-    CSS+Django/Jinja 
-* `django`, `jinja`:
-    Django/Jinja 
-* `html+django`, `html+jinja`:
-    HTML+Django/Jinja 
-* `js+django`, `js+jinja`:
-    JavaScript+Django/Jinja 
+#####Python, jinja & Django
+* `python`: Pure Python
+* `python3`: Pure Python 3 
+* `xmldjango`, `xmljinja`: Django/Jinja embedded in XML
+* `cssdjango`, `cssjinja`: Django/Jinja embedded in CSS
+* `django`, `jinja`: Pure Django/Jinja 
+* `htmldjango`, `htmljinja`: Django/Jinja embedded in HTML
+* `jsdjango`, `jsjinja`: Django/Jinja embedded in Javascript
 
 #####Java & Groovy
 * `java`:
@@ -211,19 +202,12 @@ Here is a list of more used:
     Java Server Page (*.jsp)
 
 #####C, C++, Objetive-c, C Sharp
-* `c-objdump`:
-    c-objdump (*.c-objdump)
-* `c`:
-    C (*.c, *.h, *.idc)
-* `cpp`, `c++`:
-    C++ (*.cpp, *.hpp, *.c++, *.h++, *.cc, *.hh, *.cxx, *.hxx)
-* `csharp`:
-    C# (*.cs)
-* `objective-c`: (*.m)
+* `cobjdump`: c-objdump (*.c-objdump)
+* `c`: C (*.c, *.h, *.idc)
+* `cpp`: C++ (*.cpp, *.hpp, *.c++, *.h++, *.cc, *.hh, *.cxx, *.hxx)
+* `csharp`: C# (*.cs)
+* `objectivec`: (*.m)
 
 #####XML
 * `xml`: (*.xml, *.xsl, *.rss, *.xslt, *.xsd, *.wsdl)
 * `xslt`: (*.xsl, *.xslt)
-
-
-Pygments is virtually supports all available languages. You can see it in detail in [http://pygments.org/languages/](http://pygments.org/languages/ "")

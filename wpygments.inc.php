@@ -22,22 +22,75 @@ class Pygmentizer
     private $result;
     private $shortcodes = array(
         "pygmentize",
-        "pyg",
-        "php"
+        "pyg"
     );
 
     private $shortcuts = array(
-        "javascript" => "javascript",
-        "php" => "php",
-        "html" => "html",
-        "xml" => "xml",
-        "mysql" => "mysql",
-        "sql" => "sql",
-        "css" => "css",
-        "htmlphp" => "html+php",
+        //General
         "apacheconf" => "apacheconf",
-        "console" => "console",
         "bash" => "bash",
+        "ini" => "ini",
+        "cfg" => "cfg",
+        "makefile" => "makefile",
+        "nginx" => "nginx",
+        "yaml" => "yaml",
+        "perl" => "perl",
+        "vbnet" => "vb.net",
+        "console" => "console",
+        //JS
+        "javascript" => "javascript",
+        "coffee_script" => "coffee-script",
+        "json" => "json",
+        //PHP
+        "php" => "php",
+        "cssphp" => "css+php",
+        "htmlphp" => "html+php",
+        "jsphp" => "js+php",
+        "xmlphp" => "xml+php",
+        //Ruby
+        "ruby" => "ruby",
+        "duby" => "duby",
+        "csserb" => "css+erb",
+        "cssruby" => "css+ruby",
+        "xmlerb" => "xml+erb",
+        "xmlruby" => "xml+ruby",
+        //CSS
+        "css" => "css",
+        "sass" => "sass",
+        "scss" => "scss",
+        //HTML
+        "html" => "html",
+        "haml" => "haml",
+        "jade" => "jade",
+        //SQL
+        "sql" => "sql",
+        "sqlite3 " => "sqlite3",
+        "mysql" => "mysql",
+        //Python
+        "python" => "python",
+        "python3" => "python3",
+        "xmldjango" => "xml+django",
+        "xmljinja" => "xml+jinja",
+        "cssdjango" => "css+django",
+        "django" => "django",
+        "jinja" => "jinja",
+        "htmldjango" => "html+django",
+        "htmljinja" => "html+jinja",
+        "jsdjango" => "js+django",
+        "jsjinja" => "js+jinja",
+        //Java
+        "java" => "java",
+        "groovy" => "groovy",
+        "jsp" => "jsp",
+        //C
+        "cobjdump" => "c-objdump",
+        "c" => "c",
+        "cpp" => "cpp",
+        "csharp" => "csharp",
+        "objectivec" => "objective-c",
+        //XML
+        "xml" => "xml",
+        "xslt" => "xslt",
     );
 
     function __construct()
