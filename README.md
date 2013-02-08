@@ -10,21 +10,23 @@ To use this plugin you need pygments in your server:
 sudo apt-get install python-pygments
 ```
 
-Thats all. Now you can download the plugin and install it in you wordpress.
+That's all. Now you can download the plugin and install it in your Wordpress.
 
 ## Usage
-Once you get installed the plugin the usage is straifoward. just enclose your code between tokens named with the corresponding lang:
+Once you get installed the plugin the usage is straightforward. just enclose your code between tokens named with the corresponding lang:
 
 [javascript]....[/javascript]
 
 [php]....[/php]
+
+See "Languages and filetypes supported" section to know available languages.
 
 #### parameters
 Tokens support a few parameters:
 
 [php **style**="manni" **tabwidth**="4" **linenumbers**="true"]....[/php]
 
-`style="manni"` defines code styling. Currently are 19 aviable styles.<br>
+`style="manni"` defines code styling. Currently are 19 available styles.<br>
 Default styling is `default` wich is very nice, but maybe you like other styles. see "Color styles" section.
 
 `tabwidth="4"` defines tabspace. defaults `4`
@@ -35,47 +37,67 @@ Default styling is `default` wich is very nice, but maybe you like other styles.
 ##Color styles
 These are supported color styles:
 
-* `monokai`
+* `monokai`<br>
+![monokai example](Documentation/img/style__0018_Layer-20.png "")
 
-* `manni`
+* `manni`<br>
+![monokai example](Documentation/img/style__0017_Layer-19.png "")
 
-* `rrt`
+* `rrt`<br>
+![monokai example](Documentation/img/style__0016_Layer-18.png "")
 
-* `perldoc`
+* `perldoc`<br>
+![monokai example](Documentation/img/style__0015_Layer-17.png "")
 
-* `borland`
+* `borland`<br>
+![monokai example](Documentation/img/style__0014_Layer-16.png "")
 
-* `colorful`
+* `colorful`<br>
+![monokai example](Documentation/img/style__0013_Layer-15.png "")
 
-* `default`
+* `default`<br>
+![monokai example](Documentation/img/style__0012_Layer-14.png "")
 
-* `murphy`
+* `murphy`<br>
+![monokai example](Documentation/img/style__0011_Layer-13.png "")
 
-* `vs`
+* `vs`<br>
+![monokai example](Documentation/img/style__0010_Layer-12.png "")
 
-* `trac`
+* `trac`<br>
+![monokai example](Documentation/img/style__0009_Layer-11.png "")
 
-* `tango`
+* `tango`<br>
+![monokai example](Documentation/img/style__0008_Layer-10.png "")
 
-* `fruity`
+* `fruity`<br>
+![monokai example](Documentation/img/style__0007_Layer-9.png "")
 
-* `autumn`
+* `autumn`<br>
+![monokai example](Documentation/img/style__0006_Layer-8.png "")
 
-* `bw`
+* `bw`<br>
+![monokai example](Documentation/img/style__0005_Layer-7.png "")
 
-* `emacs`
+* `emacs`<br>
+![monokai example](Documentation/img/style__0004_Layer-6.png "")
 
-* `vim`
+* `vim`<br>
+![monokai example](Documentation/img/style__0003_Layer-5.png "")
 
-* `pastie`
+* `pastie`<br>
+![monokai example](Documentation/img/style__0002_Layer-4.png "")
 
-* `friendly`
+* `friendly`<br>
+![monokai example](Documentation/img/style__0001_Layer-3.png "")
 
-* `native`
+* `native`<br>
+![monokai example](Documentation/img/style__0000_Layer-1.png "")
 
-##languages and filetypes supported
 
-Pygments not only hightliths languages. tambien hightlith filetypes like .conf **Nginx** configuration file, **Apache** (filenames .htaccess, apache.conf, apache2.conf), etc.
+##Languages and filetypes supported
+
+Pygments not only highlights languages. also highlights filetypes like .conf **Nginx** configuration file, **Apache** (filenames .htaccess, apache.conf, apache2.conf), etc.
 
 Here is a list of more used:
 
@@ -181,4 +203,4 @@ Here is a list of more used:
 * `xslt`: (*.xsl, *.xslt)
 
 
-Pygments virtually support all aviable languages. You can see it in detail in [http://pygments.org/languages/](http://pygments.org/languages/ "")
+Pygments is virtually supports all available languages. You can see it in detail in [http://pygments.org/languages/](http://pygments.org/languages/ "")
