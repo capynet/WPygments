@@ -120,8 +120,8 @@ class Pygmentizer
 
         //Traduct shortcuts to [pyg lang="LANGNAME"]...[/pyg]
         foreach ($this->shortcuts as $shortcut => $lang) {
-            $pattern = '\\[(' . "$shortcut" . ')(.*)\\](' . '[\S\s]*?' . ')\\[\/' . "$shortcut" . '\\]';
-            $content = preg_replace("/$pattern/s", '[pyg lang="' . $lang . '"$2]$3[/pyg]', $content);
+            $pattern = "#\[" . $shortcut . "[^\]]*\s*\]([\S\s]*?)\[/" . $shortcut . "[^\]]*\s*\]#";
+            $content = preg_replace($pattern, '[pyg lang="' . $lang . '"$2]$1[/pyg]', $content);
         }
 
         $content = do_shortcode($content);

@@ -41,7 +41,7 @@ function pygmentize($code, $language, $style = "default", $linenumbers = "False"
     unlink($temp_name);
 
     return array(
-        "code" => utf8_decode(implode("\n", $output)),
+        "code" => implode("\n", $output),
         "styles" => "styles/" . $style . ".css"
     );
 

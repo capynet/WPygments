@@ -1,4 +1,4 @@
-WPygments - Wordpress syntax highlighter based on Pygments
+WPygments - Wordpress syntax highlighter based on [Pygments](http://pygments.org/ "")
 ======================
 Server side syntax highlighter based on Pygments highlighter software.
 
