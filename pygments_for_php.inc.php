@@ -25,8 +25,7 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4)
         "--sourcefile" => $temp_name,
         "--style" => $style,
         "--lang" => $language,
-        "--tabwidth" => $tabwidth,
-        "--getstyles" => true,
+        "--tabwidth" => $tabwidth
     );
 
     $params = " ";
@@ -41,13 +40,9 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4)
     exec($command, $output, $retval);
     unlink($temp_name);
 
-    $divider = array_search('<<<<< divide&conquer >>>>>>', $output);
-    $arrCode = array_splice($output, 0, $divider);
-    $arrStyles = array_splice($output, 1);
-
     return array(
-        "code" => utf8_decode(implode("\n", $arrCode)),
-        "styles" => implode("\n", $arrStyles)
+        "code" => utf8_decode(implode("\n", $output)),
+        "styles" => "styles/" . $style . ".css"
     );
 
 }

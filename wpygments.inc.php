@@ -75,7 +75,6 @@ class Pygmentizer
         return $content;
     }
 
-
     /**
      * Extract and merge attrs defined in shortcode with defaults.
      *
@@ -96,21 +95,10 @@ class Pygmentizer
             'nowrap' => false,
         ), $attributes);
 
-        /* Make sure there are no wonky shell characters in these args.  At this
-        writing (2011-05-01) only alnum and +,- are used in these two options */
-        if (preg_match("/[^[:alnum:]+-]/", $attrs->lang) !== 0) {
-            $attrs->lang = "text";
-        }
-
-        if (preg_match("/[^[:alnum:]+-]/", $attrs->style) !== 0) {
-            $attrs->style = "default";
-        }
-
         $this->attrs = $attrs;
 
         return $this;
     }
-
 
     /**
      * @return Pygmentizer
@@ -210,6 +198,26 @@ class Pygmentizer
         if ($this->hidden_php_tab && !$this->expose_php_open_tag) {
             $this->result["code"] = str_replace('<span class="cp">&lt;?php</span>', "", $this->result);
         }
+
+        $this->addStyle($this->result["styles"]);
+    }
+
+    /**
+     * Add related styles.
+     * replace it if it already exists.
+     *
+     * @param bool|string $style style path relative to plugin.
+     *
+     * @return Pygmentizer
+     */
+    private function addStyle($style = false)
+    {
+
+        if (!$style) return $this;
+
+        //Add related styles. replace it if it already exists.
+        wp_enqueue_style('wpygments-styles-' . $this->attrs->style, plugins_url($style, __FILE__));
+        return $this;
     }
 
     /**
