@@ -6,7 +6,8 @@ Server side syntax highlighter based on Pygments highlighter software.
 To use this plugin you need pygments in your server:
 
 ```
-sudo apt-get install python-pygments
+sudo apt-get install python-setuptools
+easy_install Pygments
 ```
 
 That's all. Now you can download the plugin and install it in your Wordpress.
@@ -21,16 +22,14 @@ Once you get installed the plugin the usage is straightforward. just enclose you
 See "Languages and filetypes supported" section to know available languages.
 
 #### Parameters
-Tokens support a few parameters:
+Tokens support a few parameters (all optionals):
 
-[php **style**="manni" **tabwidth**="4" **linenumbers**="true"]....[/php]
+[php **style**="manni" **linenumbers**="table"]....[/php]
 
 `style="manni"` defines code styling. Currently are 19 available styles.<br>
 Default styling is `default` wich is very nice, but maybe you like other styles. see "Color styles" section.
 
-`tabwidth="4"` defines tabspace. defaults `4`
-
-`linenumbers="true"` show line numbers?. defaults `false`
+`linenumbers="false"` indicates if it should show the numbers and which format. `linenumbers="table"` or `linenumbers="inline"`
 
 #### Examples
 ```

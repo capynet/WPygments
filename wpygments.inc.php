@@ -27,13 +27,17 @@ class Pygmentizer
     );
 
     private $shortcuts = array(
-        "javascript",
-        "php",
-        "html",
-        "xml",
-        "mysql",
-        "sql",
-        "css"
+        "javascript" => "javascript",
+        "php" => "php",
+        "html" => "html",
+        "xml" => "xml",
+        "mysql" => "mysql",
+        "sql" => "sql",
+        "css" => "css",
+        "htmlphp" => "html+php",
+        "apacheconf" => "apacheconf",
+        "console" => "console",
+        "bash" => "bash",
     );
 
     function __construct()
@@ -62,9 +66,9 @@ class Pygmentizer
         }
 
         //Traduct shortcuts to [pyg lang="LANGNAME"]...[/pyg]
-        foreach ($this->shortcuts as $shortcut) {
-            $pattern = '\\[(' . "$shortcut" . ')\\](' . '[\S\s]*?' . ')\\[\/' . "$shortcut" . '\\]';
-            $content = preg_replace("/$pattern/s", '[pyg lang="$1"]$2[/pyg]', $content);
+        foreach ($this->shortcuts as $shortcut => $lang) {
+            $pattern = '\\[(' . "$shortcut" . ')(.*)\\](' . '[\S\s]*?' . ')\\[\/' . "$shortcut" . '\\]';
+            $content = preg_replace("/$pattern/s", '[pyg lang="' . $lang . '"$2]$3[/pyg]', $content);
         }
 
         $content = do_shortcode($content);
@@ -87,12 +91,7 @@ class Pygmentizer
         $attrs = (object)shortcode_atts(array(
             'lang' => "text",
             'style' => "default",
-            'tabwidth' => "4",
-            // These are passed in using $extra_opts:
-            'linenos' => null,
-            'linenostart' => null,
-            'hl_lines' => null,
-            'nowrap' => false,
+            'linenumbers' => "False",
         ), $attributes);
 
         $this->attrs = $attrs;
@@ -235,19 +234,21 @@ class Pygmentizer
         //Prepare all stuff
         $this->getAttrs($atts)->getCMDExtraArgs()->prepareContent($content);
 
-        $cacheKey = md5($this->content . $this->attrs->lang . $this->attrs->style . $this->attrs->tabwidth . $this->extra_opts_array);
+        $cacheKey = md5($this->content . implode("", (array)$this->attrs));
 
         $cache = wp_cache_get($cacheKey, "wpygments");
 
-        if (false && $cache != false) return $cache;
+        if ($cache != false) {
+            $this->addStyle("styles/" . $this->attrs->style . ".css");
+            return $cache;
+        }
 
         //Call pygmentize wrapper
         $this->result = pygmentize(
             $this->content,
             $this->attrs->lang,
             $this->attrs->style,
-            $this->attrs->tabwidth,
-            $this->extra_opts_array
+            $this->attrs->linenumbers
         );
 
         $this->postProcessContent();

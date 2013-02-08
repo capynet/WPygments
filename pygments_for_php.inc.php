@@ -2,13 +2,13 @@
 /**
  * Comunicates with our middleware, and it call pygmentize.
  *
- * @param $code
- * @param $language
+ * @param string $code
+ * @param string $language
  * @param string $style
- * @param int $tabwidth
+ * @param string $linenumbers
  * @return string
  */
-function pygmentize($code, $language, $style = "default", $tabwidth = 4)
+function pygmentize($code, $language, $style = "default", $linenumbers = "False")
 {
 
     $pygments_bind_app = "python " . dirname(__FILE__) . "/bind.py";
@@ -25,7 +25,7 @@ function pygmentize($code, $language, $style = "default", $tabwidth = 4)
         "--sourcefile" => $temp_name,
         "--style" => $style,
         "--lang" => $language,
-        "--tabwidth" => $tabwidth
+        "--linenumbers" => $linenumbers
     );
 
     $params = " ";
