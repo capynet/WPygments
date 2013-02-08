@@ -1,6 +1,6 @@
 WPygments - Wordpress syntax highlighter based on Pygments
 ======================
-
+[XML][]
 Server side syntax highlighter based on Pygments highlighter software.
 
 ## Installation:
@@ -223,7 +223,7 @@ Here is a list of more used:
     C# (*.cs)
 * `objective-c`: (*.m)
 
-#####XML
+#####XML#####
 * `xml`: (*.xml, *.xsl, *.rss, *.xslt, *.xsd, *.wsdl)
 * `xslt`: (*.xsl, *.xslt)
 
