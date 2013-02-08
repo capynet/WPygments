@@ -21,7 +21,7 @@ Once you get installed the plugin the usage is straightforward. just enclose you
 
 See "Languages and filetypes supported" section to know available languages.
 
-#### parameters
+#### Parameters
 Tokens support a few parameters:
 
 [php **style**="manni" **tabwidth**="4" **linenumbers**="true"]....[/php]
@@ -33,6 +33,31 @@ Default styling is `default` wich is very nice, but maybe you like other styles.
 
 `linenumbers="true"` show line numbers?. defaults `false`
 
+#### Examples
+```
+[javascript]
+//comment line
+var foo = "foo";
+var bar = function(){
+	var baz;
+}
+[/javascript]
+```
+
+Outputs highlighted js with **default** style, **4** tabspace, **no** (false) linenumbers.
+
+```
+[javascript style="monokai"]
+//comment line
+var foo = "foo";
+var bar = function(){
+	var baz;
+}
+[/javascript]
+```
+Outputs highlighted js with **monokai** style, **4** tabspace (the default), **no** (false) linenumbers (the default).
+
+And so on.
 
 ##Color styles
 These are supported color styles:
