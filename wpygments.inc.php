@@ -93,10 +93,47 @@ class Pygmentizer
         "xslt" => "xslt",
     );
 
+    private $styles = array(
+        "monokai",
+        "manni",
+        "rrt",
+        "perldoc",
+        "borland",
+        "colorful",
+        "default",
+        "murphy",
+        "vs",
+        "trac",
+        "tango",
+        "fruity",
+        "autumn",
+        "bw",
+        "emacs",
+        "vim",
+        "pastie",
+        "friendly",
+        "native",
+    );
+
+
     function __construct()
     {
         add_filter('comment_text', array(&$this, 'parseShortcodes'), 7);
         add_filter('the_content', array(&$this, 'parseShortcodes'), 7);
+
+        add_action('admin_menu', array(&$this, 'register_settings_page'));
+    }
+
+    // Register the settings page
+    function register_settings_page()
+    {
+        add_options_page('WPygments settings', 'WPygments', 'manage_options', 'WPygments', array(&$this, 'settingPage'));
+    }
+
+    public function settingPage()
+    {
+        include_once "WPygmentsAdmin.inc";
+        print WPygmentsAdmin::adminPage($this);
     }
 
     /**
@@ -309,6 +346,11 @@ class Pygmentizer
         wp_cache_set($cacheKey, $this->result["code"], "wpygments");
 
         return $this->result["code"];
+    }
+
+    public function getStyles()
+    {
+        return $this->styles;
     }
 
 }

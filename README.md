@@ -42,7 +42,7 @@ var bar = function(){
 [/javascript]
 ```
 
-Outputs highlighted js with **default** style, **4** tabspace, **no** (false) linenumbers.
+Outputs highlighted js with **default** style, and **no** (false) linenumbers.
 
 ```
 [javascript style="monokai"]
@@ -53,7 +53,7 @@ var bar = function(){
 }
 [/javascript]
 ```
-Outputs highlighted js with **monokai** style, **4** tabspace (the default), **no** (false) linenumbers (the default).
+Outputs highlighted js with **monokai** style, and **no** (false) linenumbers (the default).
 
 And so on.
 
