@@ -45,7 +45,7 @@ var bar = function(){
 Outputs highlighted js with **default** style, and **no** (false) linenumbers.
 
 ```
-[javascript style="monokai"]
+[javascript style="monokai" linenumbers="inline"]
 //comment line
 var foo = "foo";
 var bar = function(){
@@ -53,7 +53,7 @@ var bar = function(){
 }
 [/javascript]
 ```
-Outputs highlighted js with **monokai** style, and **no** (false) linenumbers (the default).
+Outputs highlighted js with **monokai** style, linenumbers.
 
 And so on.
 
