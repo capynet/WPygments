@@ -9,7 +9,7 @@ Author URI: http://ecapy.com/
 License: GPL v3
 */
 
-require_once(dirname(__FILE__) . "/pygments_for_php.inc.php");
+require_once(dirname(__FILE__) . "/PHPygments/PHPygments.php");
 
 class Pygmentizer
 {
@@ -288,7 +288,7 @@ class Pygmentizer
             $this->result["code"] = str_replace('<span class="cp">&lt;?php</span>', "", $this->result);
         }
 
-        $this->addStyle($this->result["styles"]);
+        $this->addStyle("PHPygments/" . $this->result["styles"]);
     }
 
     /**
@@ -329,12 +329,12 @@ class Pygmentizer
         $cache = wp_cache_get($cacheKey, "wpygments");
 
         if ($cache != false) {
-            $this->addStyle("styles/" . $this->attrs->style . ".css");
+            $this->addStyle("PHPygments/styles/" . $this->attrs->style . ".css");
             return $cache;
         }
 
-        //Call pygmentize wrapper
-        $this->result = pygmentize(
+        //Call PHPygments wrapper
+        $this->result = PHPygments::render(
             $this->content,
             $this->attrs->lang,
             $this->attrs->style,
