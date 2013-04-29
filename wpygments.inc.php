@@ -125,16 +125,16 @@ class Pygmentizer
     }
 
     // Register the settings page
-    function register_settings_page()
-    {
-        add_options_page('WPygments settings', 'WPygments', 'manage_options', 'WPygments', array(&$this, 'settingPage'));
-    }
-
-    public function settingPage()
-    {
-        include_once "WPygmentsAdmin.inc";
-        print WPygmentsAdmin::adminPage($this);
-    }
+//    function register_settings_page()
+//    {
+//        add_options_page('WPygments settings', 'WPygments', 'manage_options', 'WPygments', array(&$this, 'settingPage'));
+//    }
+//
+//    public function settingPage()
+//    {
+//        include_once "WPygmentsAdmin.inc";
+//        print WPygmentsAdmin::adminPage($this);
+//    }
 
     /**
      * A filter function that runs do_shortcode() but only with this plugin's shortcodes
