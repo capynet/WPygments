@@ -211,3 +211,9 @@ NOTE: to use see "Usage" section
 #####XML
 * `xml`: (*.xml, *.xsl, *.rss, *.xslt, *.xsd, *.wsdl)
 * `xslt`: (*.xsl, *.xslt)
+
+
+<hr>
+Todos
+=====
+Implement PHPygments.
