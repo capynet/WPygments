@@ -26,7 +26,7 @@ Tokens support a few parameters (all optionals):
 
 [php **style**="manni" **linenumbers**="table"]....[/php]
 
-`style="manni"` defines code styling. Currently are 19 available styles.<br>
+`style="manni"` defines code styling. Currently are 22 available styles.<br>
 Default styling is `default` wich is very nice, but maybe you like other styles. see "Color styles" section.
 
 `linenumbers="false"` indicates if it should show the numbers and which format. `linenumbers="table"` or `linenumbers="inline"`
@@ -211,9 +211,3 @@ NOTE: to use see "Usage" section
 #####XML
 * `xml`: (*.xml, *.xsl, *.rss, *.xslt, *.xsd, *.wsdl)
 * `xslt`: (*.xsl, *.xslt)
-
-
-<hr>
-Todos
-=====
-Implement PHPygments.
