@@ -1,0 +1,22 @@
+{
+    "name": "phpygments/phpygments",
+    "type": "library",
+    "description": "Syntax highlighter bridge for pygments",
+    "homepage": "https://github.com/capy/PHPygments",
+    "keywords": ["Syntax highlighter", "highlighter"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Capy - Marcelo Tosco",
+            "email": "capy.net@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPygments": "src/"
+        }
+    }
+}
