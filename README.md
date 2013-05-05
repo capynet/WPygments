@@ -2,6 +2,8 @@ WPygments - Wordpress syntax highlighter based on [Pygments](http://pygments.org
 ======================
 Server side syntax highlighter based on Pygments highlighter software.
 
+Get the plugin at [http://wordpress.org/extend/plugins/wpygments/](http://wordpress.org/extend/plugins/wpygments/ "")
+
 ## Installation:
 To use this plugin you need pygments in your server:
 
