@@ -23,7 +23,8 @@ class PHPygments {
    */
   static function render($code, $language, $style = "default", $linenumbers = FALSE) {
 
-    $linenumbers = $linenumbers ? "True" : "False";
+    // Disabling the line below, since it effectively destroys linenumbers functionality (UlSa, 20140313)
+    //$linenumbers = $linenumbers ? "True" : "False";
     $pygments_bind_app = "python " . dirname(__FILE__) . "/bind.py";
 
     // Create a temporary file as bridge for code...
