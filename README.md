@@ -206,9 +206,11 @@ NOTE: to use see "Usage" section
 * `htmldjango`, `htmljinja`: Django/Jinja embedded in HTML
 * `jsdjango`, `jsjinja`: Django/Jinja embedded in Javascript
 
-#####Java & Groovy
+#####Java && family
 * `java`:
     Java (*.java)
+* `clojure`:
+    clojure (*.clj)
 * `groovy`:
     Groovy (*.groovy)
 * `jsp`:
