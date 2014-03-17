@@ -31,7 +31,7 @@ Tokens support a few parameters (all optionals):
 `style="manni"` defines code styling. Currently are 22 available styles.<br>
 Default styling is `default` wich is very nice, but maybe you like other styles. see "Color styles" section.
 
-`linenumbers="false"` indicates if it should show the numbers and which format. `linenumbers="table"` or `linenumbers="inline"`
+If you set "linenumbers" to `inline` or `table`, the line numbers will be added as independent table column or as part of the line.
 
 #### Examples
 ```
@@ -44,7 +44,7 @@ var bar = function(){
 [/javascript]
 ```
 
-Outputs highlighted js with **default** style, and **no** (false) linenumbers.
+Outputs highlighted js with **default** style, and **no** line numbers.
 
 ```
 [javascript style="monokai" linenumbers="inline"]
@@ -55,9 +55,20 @@ var bar = function(){
 }
 [/javascript]
 ```
-Outputs highlighted js with **monokai** style, linenumbers.
+Outputs highlighted js with **monokai** style with line numbers (as part of the line).
 
-And so on.
+
+```
+[javascript style="monokai" linenumbers="table"]
+//comment line
+var foo = "foo";
+var bar = function(){
+	var baz;
+}
+[/javascript]
+```
+Outputs highlighted js with **monokai** style with line numbers (as new column).
+
 
 ##Color styles
 These are supported color styles:
